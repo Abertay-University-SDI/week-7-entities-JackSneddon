@@ -6,7 +6,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	input = in;
 
 	// initialise game objects
-
+	manager = new BeachBallManager();
 }
 
 Level::~Level()
@@ -17,19 +17,22 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-
+	if (input->isPressed(sf::Keyboard::Space))
+	{
+		manager->spawn();
+	}
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	manager->update(dt);
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	manager->render(window);
 	endDraw();
 }
